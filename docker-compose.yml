@@ -1,0 +1,19 @@
+version: '3'
+services:
+    # scrapinghub/splash: https://hub.docker.com/r/scrapinghub/splash
+      scraper_airbnb:
+        image: scraper_airbnb:latest
+        build:
+          context: .
+          dockerfile: Dockerfile
+        environment:
+          - scraper_airbnb_telegram_token=5497409562:AAHZuFP5JLW-6gAUmzy02zQ87jrepEfJ-5o
+          - check_in_ago=2
+          - check_out_after=3
+        volumes:
+          - "scraper_airbnb_data:/app/data" # Docker named volume
+          #- "C:/Users/kerem/Desktop/Upwork/Francisco Ortiz/scraper_airbnb/data:/app/data" # Windows style mount volume
+          - "./tracker:/app/tracker" # Linux style mount volume
+
+volumes:
+  scraper_airbnb_data:
